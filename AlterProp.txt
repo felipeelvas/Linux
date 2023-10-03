@@ -1,0 +1,66 @@
+
+Alterando a propriedade do arquivo
+Inicialmente, o proprietário de um arquivo é o usuário que o cria. O comando chown é usado para alterar a propriedade de arquivos e diretórios. Alterar o proprietário do usuário requer acesso administrativo. Um usuário regular não pode usar esse comando para alterar o proprietário do usuário de um arquivo, mesmo para dar a propriedade de um de seus próprios arquivos a outro usuário. No entanto, o comando chown também permite alterar a propriedade do grupo, o que pode ser feito pela root ou o proprietário do arquivo.
+
+Para alterar o proprietário do usuário de um arquivo, a seguinte sintaxe pode ser usada. O primeiro argumento, [PROPRIETÁRIO], especifica qual usuário deve ser o novo proprietário. O segundo argumento, ARQUIVO, especifica qual propriedade do arquivo está mudando.
+
+chown [OPÇÕES] [PROPRIETÁRIO] ARQUIVO
+Acompanhe
+
+Use o seguinte comando para alternar para o diretório Documents:
+
+sysadmin@localhost:~$ cd ~/Documents
+Atualmente, todos os arquivos no diretório Documents são de propriedade do usuário sysadmin. Isso pode ser verificado usando o comando ls -l. Lembre-se de que a terceira coluna indica o proprietário do usuário.
+
+sysadmin@localhost:~/Documents$ ls -l                                           
+total 144                                                                       
+drwx------ 5 sysadmin sysadmin  4096 Dec 20  2017 School                        
+drwx------ 2 sysadmin sysadmin  4096 Dec 20  2017 Work                          
+-rw-r--r-- 1 sysadmin sysadmin    39 Dec 20  2017 adjectives.txt                
+-rw-r--r-- 1 sysadmin sysadmin    90 Dec 20  2017 alpha-first.txt               
+-rw-r--r-- 1 sysadmin sysadmin   106 Dec 20  2017 alpha-second.txt              
+-rw-r--r-- 1 sysadmin sysadmin   195 Dec 20  2017 alpha-third.txt               
+-rw-r--r-- 1 sysadmin sysadmin   390 Dec 20  2017 alpha.txt                     
+-rw-r--r-- 1 sysadmin sysadmin    42 Dec 20  2017 animals.txt                   
+-rw-r--r-- 1 sysadmin sysadmin    14 Dec 20  2017 food.txt                      
+-rwxr--r-- 1 sysadmin sysadmin   647 Dec 20  2017 hello.sh                      
+-rw-r--r-- 1 sysadmin sysadmin    67 Dec 20  2017 hidden.txt                    
+-rw-r--r-- 1 sysadmin sysadmin    10 Dec 20  2017 letters.txt                   
+-rw-r--r-- 1 sysadmin sysadmin    83 Dec 20  2017 linux.txt                     
+-rw-r--r-- 1 sysadmin sysadmin 66540 Dec 20  2017 longfile.txt                  
+-rw-r--r-- 1 sysadmin sysadmin   235 Dec 20  2017 newhome.txt                   
+-rw-r--r-- 1 sysadmin sysadmin    10 Dec 20  2017 numbers.txt                   
+-rw-r--r-- 1 sysadmin sysadmin    77 Dec 20  2017 os.csv                        
+-rw-r--r-- 1 sysadmin sysadmin    59 Dec 20  2017 people.csv                    
+-rw-r--r-- 1 sysadmin sysadmin   110 Dec 20  2017 profile.txt                   
+-rw-r--r-- 1 sysadmin sysadmin    51 Dec 20  2017 red.txt   
+Para alternar o proprietário do script hello.sh para o usuário root, use root como o primeiro argumento e hello.sh como o segundo argumento.
+Não se esqueça de usar o comando sudo para obter os privilégios administrativos necessários. Use a senha netlab123 quando solicitado:
+
+sysadmin@localhost:~/Documents$ sudo chown root hello.sh                        
+[sudo] password for sysadmin:
+Confirme se o proprietário do usuário foi alterado executando o comando ls -l. Use o nome do arquivo como um argumento para limitar a saída:
+
+sysadmin@localhost:~/Documents$ ls -l hello.sh                                  
+-rwxr--r-- 1 root sysadmin 647 Dec 20  2017 hello.sh  
+O campo proprietário do usuário agora é root indicando que a alteração foi bem-sucedida.
+
+-rwxr--r-- 1 root sysadmin 647 Dec 20  2017 hello.sh
+Considere o seguinte
+
+Tente executar o script hello.sh novamente. Ele falha! Por que?
+
+sysadmin@localhost:~/Documents$ ./hello.sh                                      
+-bash: ./hello.sh: Permission denied  
+Somente o proprietário do usuário tem a permissão de execução e agora o usuário rooté o proprietário do usuário. Este arquivo agora requer acesso administrativo para ser executado. Use o comando sudo para executar o script como o usuário root.
+
+sysadmin@localhost:~/Documents$ sudo ./hello.sh                                 
+[sudo] password for sysadmin:                                                   
+ ______________                                                                 
+( Hello World! )                                                                
+ --------------                                                                 
+        \                                                                       
+         \                                                                      
+           <(^)                                                                 
+            ( )  
+ 

@@ -1,0 +1,65 @@
+Section header image
+Avançar
+Esperamos que você tenha gostado desta breve introdução ao mundo do Linux. O conteúdo contido aqui se alinha ao conhecimento de Linux abrangido pelos objetivos do exame LPI Linux Essentials, mas há muito mais! Obtenha conhecimentos de Linux de nível de certificação para avançar sua carreira!
+
+NDG Linux Essentials
+Se você estiver interessado em ampliar seu conhecimento em Linux, a Cisco Networking Academy também oferece três cursos em Linux. O NDG Linux Essentials é perfeito para iniciantes que procuram compreender o básico, enquanto o NDG Linux Series oferece aos iniciantes uma cobertura mais rigorosa e aprofundada.
+
+NDG Linux Essentials. Aprenda os fundamentos do sistema operacional Linux, linha de comando e conceitos básicos de código aberto. Imagem de alunos olhando para monitores.
+O curso NDG Linux Essentials foi projetado para prepará-lo para o Certificado de Desenvolvimento Profissional Linux Essentials do Linux, que valida uma compreensão demonstrada de:
+
+FOSS, as várias comunidades e licenças
+Conhecimento de aplicativos de código aberto no local de trabalho, uma vez que se relacionam com equivalentes de código fechado
+Conceitos básicos de hardware, processos, programas e componentes do sistema operativo Linux
+Como trabalhar na linha de comando e com arquivos
+Como criar e restaurar backups e arquivos compactados
+Segurança do sistema, usuários/grupos e permissões de arquivo para diretórios públicos e privados
+Como criar e executar scripts simples
+Para obter o Certificado de Desenvolvimento Profissional do Linux Essentials, você deve passar o Linux Essentials (LPI-010) que abrange:
+
+A comunidade Linux e uma carreira em código aberto
+Encontrando seu caminho em um sistema Linux
+O poder da linha de comando
+O sistema operativo Linux
+Segurança e permissões de arquivo
+O Certificado de Desenvolvimento Profissional do Linux Essentials é o início do seu caminho para se tornar um profissional certificado pelo Linux. Informações sobre as certificações do Linux Professional Institute podem ser encontradas acessando http://www.lpi.org.
+
+Não se preocupe se você tem pouca ou nenhuma experiência no Linux. Este curso é o local de partida perfeito projetado para ensinar todos os conceitos da estaca zero. No entanto, se você não achar este material desafiador o suficiente, considere começar com o NDG Introdução ao Linux I, um curso introdutório mais rigoroso.
+
+NDG Linux Series
+NDG Linux I and II. Aprenda habilidades de administração de sistema Linux e prepare-se para LPI LPIC-1 ou CompTIA Linux + com certificação LPI. Imagem de dois estudantes do sexo masculino olhando para um monitor.
+A série NDG Linux foi projetada para prepará-lo para a certificação Linux Professional Institute Nível 1. LPIC-1 é uma certificação Linux Server Professional para administradores Linux que confirma sua capacidade de realizar as seguintes tarefas:
+
+Trabalhar na linha de comando do Linux
+Executar tarefas fáceis de manutenção: ajudar os usuários, adicionar usuários a um sistema maior, fazer backup e restaurar, desligar e reiniciar.
+Instalar e configurar uma estação de trabalho (incluindo X) e conectá-la a uma LAN ou a um PC autônomo na Internet.
+Para obter a certificação LPIC-1, você deve passar nos Exames 101 e 102. A introdução ao Linux I da NDG foi projetada para prepará-lo para o Exame 101, que abrange:
+
+Arquitetura do sistema
+Instalação do Linux e gerenciamento de pacotes
+GNU and Unix Commands
+Dispositivos, sistemas de arquivos Linux, hierarquia de sistemas de arquivos padrãos
+A introdução ao Linux II da NDG alinha-se aos objetivos do Exame 102, que abrange:
+
+Shell, Script e Gerenciamento de Dados
+Interfaces e áreas de trabalho
+Tarefas administrativas
+Serviços Essenciais do Sistema
+Fundamentos de rede
+Segurança
+A certificação LPIC-1 é a primeira de três certificações profissionais LPI. Informações sobre todas as certificações do Linux Professional Institute estão disponíveis em: http://www.lpi.org.
+
+IT Essentials
+Para saber mais sobre as habilitações fundamentais em informática e carreira para empregos de TI de nível básico, confira o restante do IT Essentials.
+
+IT Essentials. Aprenda a construir e configurar um computador e conectá-lo com segurança a uma rede, seu primeiro passo para uma carreira em TI. Alunos olhando para o interior de um computador.
+O IT Essentials cobre as habilitações fundamentais em informática e carreira para empregos de nível básico de TI. O currículo IT Essentials inclui laboratórios práticos que oferecem experiência prática. As ferramentas virtuais ajudam você a aprimorar suas capacidades de resolução de problemas e praticar o que você aprende.
+
+Desenvolver conhecimento prático de como os computadores funcionam
+Desenvolver o pensamento crítico e capacidades complexas de solução de problemas usando laboratórios práticos e ferramentas virtuais de aprendizagem
+Aplicar habilitações e procedimentos para instalar e atualizar hardware e software e sistemas de resolução de problemas
+Praticar o que aprendeu em equipamentos reais e usando a ferramenta de simulação Cisco Packet Tracer
+Receber feedback imediato sobre seu trabalho através de testes e testes integrados
+Conectare com a comunidade global da Cisco Networking Academy
+Gráfico de pesquisa dos destaques de trabalhar com código aberto. Open Source executa tudo. Mais oportunidades de trabalhar remotamente. Modelo de desenvolvimento colaborativo. 58% dos profissionais relatam que seguiram uma carreira de código aberto porque a tecnologia moderna funciona com código aberto. Relatório de trabalho de código aberto de 2021 - Linux Foundation Research.
+"Destaques de trabalho em open source. Open Source executa tudo. Mais oportunidades de trabalhar remotamente. Modelo de desenvolvimento colaborativo. 58% dos profissionais relatam que seguiram uma carreira de código aberto porque a tecnologia moderna funciona com código aberto.

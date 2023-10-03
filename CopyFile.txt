@@ -1,0 +1,90 @@
+Copiando Arquivos
+Criar cópias de arquivos pode ser útil por vários motivos:
+
+Se uma cópia de um arquivo for criada antes que as alterações sejam feitas, é possível voltar ao original.
+
+Uma cópia de um arquivo pode ser usada para transferir um arquivo para dispositivos de mídia removíveis.
+
+Uma cópia de um documento existente pode ser usada como modelo para um novo documento.
+
+cp [OPÇÕES] FONTE DESTINO
+Acompanhe
+
+Use o seguinte comando para alternar para o diretório Documents:
+
+sysadmin@localhost:~$ cd ~/Documents
+O comando cp é usado para copiar arquivos. Semelhante ao comando mv, ele requer pelo menos dois argumentos: uma origem e um destino. Por exemplo, para copiar o arquivo /etc/passwd para o diretório atual, use o seguinte comando:
+
+sysadmin@localhost:~/Documents$ cp /etc/passwd .
+Nota
+
+O segundo argumento é caratere (.). Lembre-se da seção Alterando Diretórios que é um atalho que representa o diretório atual.
+
+O resultado da execução do comando anterior criaria uma cópia do conteúdo do arquivo /etc/passwd no diretório Documents, uma vez que esse é o nosso diretório atual. Isso pode ser confirmado usando o comando ls:
+
+sysadmin@localhost:~/Documents$ ls
+School            alpha-third.txt  hidden.txt    numbers.txt  red.txt           
+Work              alpha.txt        letters.txt   os.csv                         
+adjectives.txt    animals.txt      linux.txt     passwd                         
+alpha-first.txt   food.txt         longfile.txt  people.csv                     
+alpha-second.txt  hello.sh         newhome.txt   profile.txt
+Considere o seguinte
+
+As permissões podem ter um impacto nos comandos de gerenciamento de arquivos, como o comando cp. Para copiar um arquivo, é necessário ter permissão de execução para acessar o diretório onde o arquivo está localizado e a permissão de leitura para o arquivo que está sendo copiado.
+
+Também é necessário ter permissão de gravação e execução no diretório para o qual o arquivo está sendo copiado. Normalmente, há dois lugares onde você sempre deve ter permissão de gravação e execução no diretório: seu diretório home e o diretório /tmp.
+
+
+parte dois:
+
+Copiando Arquivos
+O comando dd é um utilitário para copiar arquivos ou partições inteiras no nível de bits.
+
+dd [OPÇÕES] OPERANDO
+Este comando tem vários recursos úteis, inclusive:
+
+Pode ser usado para clonar ou excluir (limpar) discos ou partições inteiros.
+Pode ser usado para copiar dados brutos para dispositivos removíveis, como unidades USB e CDROMs.
+Pode fazer backup e restaurar o MBR (Master Boot Record).
+Pode ser usado para criar um arquivo de tamanho específico preenchido com zeros binários, que pode ser usado como um arquivo de swap (memória virtual).
+Vamos examinar o seguinte exemplo. O comando dd cria um arquivo chamado /tmp/swapex com 50 blocos de zeros que têm um megabyte de tamanho:
+
+Acompanhe
+
+Use o seguinte comando cd para retornar ao diretório home:
+
+sysadmin@localhost:~/Documents$ cd ~
+sysadmin@localhost:~$ dd if=/dev/zero of=/tmp/swapex bs=1M count=50 
+50+0 records in
+50+0 records out
+52428800 bytes (52 MB) copied, 0.825745 s, 635 MB/s
+O comando dd usa argumentos especiais para especificar como ele funcionará. A seguir ilustra alguns dos argumentos mais comumente usados:
+
+Argumento	Descrição
+if	
+Arquivo de entrada: O arquivo de entrada a ser lido.
+
+dd if=/dev/zero of=/tmp/swapex bs=1M count=50
+O exemplo lê do arquivo /dev/zero, um arquivo especial contendo um número ilimitado de zeros.
+
+of	
+Arquivo de saída: O arquivo de saída a ser gravado.
+
+dd if=/dev/zero of=/tmp/swapex bs=1M count=50
+bs	
+Tamanho do bloco: O tamanho do bloco a ser usado. Por padrão, o valor é considerado em bytes. Use os seguintes sufixos para especificar outras unidades: K, M, G e T para kilobytes, megabytes, gigabytes e terabytes respectivamente.
+
+dd if=/dev/zero of=/tmp/swapex bs=1M count=50
+O exemplo usa um tamanho de bloco de um megabyte.
+
+count	
+Contagem: O número de blocos a serem lidos a partir do arquivo de entrada.
+
+dd if=/dev/zero of=/tmp/swapex bs=1M count=50
+O comando de exemplo lê 50 blocos.
+
+Considere o seguinte
+
+Nenhum tamanho de bloco ou contagem precisa ser especificado ao copiar em dispositivos inteiros. Por exemplo, para clonar de um disco rígido (/dev/sda) para outro (/dev/sdb) execute o seguinte comando:
+
+dd if=/dev/sda of=/dev/sdb

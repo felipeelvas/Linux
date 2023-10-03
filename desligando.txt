@@ -1,0 +1,56 @@
+Desligando
+O comando shutdown faz com que o sistema seja desligado de forma segura. Todos os usuários conectados são notificados de que o sistema está sendo desativado e, nos últimos cinco minutos que antecederam o desligamento, novos logins são evitados.
+
+shutdown [OPÇÕES] TEMPO [MENSAGEM]
+Acompanhe
+
+O comando shutdown requer acesso administrativo, mude para a conta root desta seção usando o seguinte comando. Use netlab123 como senha.
+
+sysadmin@localhost:~$ su -                                                   
+Password:                                                                       
+root@localhost:~#
+Nossas máquinas virtuais não vão realmente desligar! Sinta-se à vontade para usar o comando, mas lembre-se de que ele apenas reverterá ao prompt após a contagem regressiva, em vez de derrubar o sistema. Pode ser necessário pressionar Enter para retornar o prompt de comando.
+root@localhost:~# shutdown now                                         
+                                                                                
+Broadcast message from sysadmin@localhost                                       
+        (/dev/pts/0) at 2:05 ...                                              
+                                                                                
+The system is going down for maintenance NOW! 
+Ao contrário de outros comandos usados para desligar o sistema, o comando shutdown requer um argumento de tempo especificando quando o desligamento deve começar. Os formatos deste argumento de tempo podem ser a palavra now (agora), uma hora do dia no formato hh:mm ou o número de minutos para atrasar no formato +minutos.
+
+Considere o seguinte
+
+O relógio do nosso sistema pode ser definido para um fuso horário diferente daquele em que você está localizado. Para verificar a hora no terminal, use o comando date. Em nossas máquinas, o formato padrão da saída do comando date é o seguinte:
+
+dia_da_semana mês dia hora:minuto:segundo ano UTC
+As letras UTC presentes na saída indica que o tempo está sendo exibido como Tempo Coordenado Universal.
+
+root@localhost:~# date                                                      
+Sat Oct  3 22:15:58 UTC 2020 
+root@localhost:~# shutdown 01:51                                                
+                                                                                
+Broadcast message from sysadmin@localhost                                       
+        (/dev/pts/0) at 1:50 ...                                              
+                                                                                
+The system is going down for maintenance in 1 minute!
+
+Broadcast message from sysadmin@localhost                                       
+        (/dev/pts/0) at 1:51 ...                                              
+                                                                                
+The system is going down for maintenance NOW! 
+O comando shutdown também tem um argumento de mensagem opcional, indicando uma mensagem que aparecerá nos terminais de todos os usuários. Por exemplo:
+
+root@localhost:~# shutdown +1 "Goodbye World!"                                  
+                                                                                
+Broadcast message from sysadmin@localhost                                       
+        (/dev/pts/0) at 3:07 ...                                              
+                                                                                
+The system is going down for maintenance in 1 minute!                           
+Goodbye World!                                                                  
+shutdown: Unable to shutdown system                                             
+root@localhost:~#                                                             
+Broadcast message from sysadmin@localhost                                       
+        (/dev/pts/0) at 3:08 ...                                              
+                                                                                
+The system is going down for maintenance NOW!                                   
+Goodbye World!                                

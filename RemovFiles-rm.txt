@@ -1,0 +1,37 @@
+Removendo arquivos
+O comando rm é usado para excluir arquivos e diretórios.
+É importante ter em mente que arquivos e diretórios excluídos não entram em uma “lixeira” como acontece com
+sistemas operacionais voltados para a área de trabalho.
+Quando um arquivo é excluído com o comando rm, ele quase sempre desaparece permanentemente.
+
+rm [OPÇÕES] ARQUIVO
+Acompanhe
+
+Use o seguinte comando para alternar para o diretório Documents:
+
+sysadmin@localhost:~$ cd ~/Documents
+Sem opções, o comando rm é normalmente usado para remover arquivos regulares:
+
+sysadmin@localhost:~/Documents$ rm linux.txt
+sysadmin@localhost:~/Documents$ ls linux.txt
+ls: cannot access linux.txt: No such file or directory
+O comando rm ignorará os diretórios que é solicitado a remover;
+para excluir um diretório, use uma opção recursiva, seja as opções -r ou -R .
+Basta ter cuidado, uma vez que estas opções são “recursivas”, isto irá eliminar todos os arquivose todos os subdiretórios:
+
+sysadmin@localhost:~/Documents$ rm Work
+rm: cannot remove 'Work': Is a directory
+sysadmin@localhost:~/Documents$ rm -r Work
+sysadmin@localhost:~/Documents$ ls Work                                         
+ls: cannot access Work: No such file or directory
+Aviso
+
+O comando rm remove arquivos permanentemente. Para repetir os exemplos acima, redefina o terminal usando o botão de reinicialização.
+
+Considere isto
+
+As permissões podem ter um impacto nos comandos de gerenciamento de arquivos, como o comando rm.
+
+Para excluir um arquivo dentro de um diretório,
+um usuário deve ter permissão de gravação e execução em um diretório.
+Normalmente, os usuários regulares só têm esse tipo de permissão em seu diretório (home) pessoal e seus subdiretórios.

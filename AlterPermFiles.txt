@@ -1,0 +1,79 @@
+Alterando permissões de arquivo
+O comando chmod é usado para alterar as permissões de um arquivo ou diretório. Somente o usuário root ou o usuário que possui o arquivo é capaz de alterar as permissões de um arquivo.
+
+Considere o seguinte
+
+Por que o comando é chamado chmod em vez de chperm? As permissões costumavam ser referidas como modos de acesso, então o comando chmod realmente significa alterar os mod os de acesso.
+
+Existem duas técnicas para alterar permissões com o comando chmod: simbólico e octal. O método simbólico é bom para alterar um conjunto de permissões de cada vez. O método octal ou numérico requer o conhecimento do valor octal de cada uma das permissões e requer que todos os três conjuntos de permissões (usuário, grupo, outros) sejam especificados a cada vez. Por uma questão de simplicidade, apenas o método simbólico será coberto. Para saber mais sobre o método octal confira NDG Linux Essentials!
+
+Acompanhe
+
+Use o seguinte comando para alternar para o diretório Documents:
+
+sysadmin@localhost:~$ cd ~/Documents
+O Método Simbólico
+chmod [<CONJUNTO><AÇAO><PERMISSÕES>]... ARQUIVO
+Para usar o método simbólico de chmod indicar primeiro qual conjunto de permissões está sendo alterado:
+
+chmod [<CONJUNTO><AÇAO><PERMISSÕES>]... ARQUIVO
+Símbolo	Significado
+u	Usuário: o usuário que possui o arquivo.
+g	Grupo: o grupo que possui o arquivo.
+o	Outros: qualquer pessoa que não seja o proprietário do usuário ou membro do proprietário do grupo.
+a	Todos: refere-se ao usuário, grupo e outros.
+Em seguida, especifique um símbolo de ação:
+
+chmod [<CONJUNTO><AÇAO><PERMISSÕES>]... ARQUIVO
+Simbolo	Significado
++	Adicione a permissão, se necessário
+=	Especifique a permissão exata
+-	Remova a permissão, se necessário
+Após um símbolo de ação, especifique uma ou mais permissões a serem executadas.
+
+chmod [<CONJUNTO><AÇAO><PERMISSÕES>]... ARQUIVO
+Simbolo	Significado
+r	ler
+w	escrever
+x	executar
+Finalmente, um espaço e os nomes de caminho para os arquivos atribuírem essas permissões.
+
+chmod [<CONJUNTO><AÇAO><PERMISSÕES>]... ARQUIVO
+O arquivo hello.sh usado nos exemplos na página anterior é um script. Um script é um arquivo que pode ser executado, semelhante a um comando:
+
+sysadmin@localhost:~/Documents$ ls -l hello.sh                                  
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+No entanto, atualmente, a permissão de execução não está definida para nenhum dos grupos de permissões:
+
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+Falha ao tentar executar esse script usando a seguinte sintaxe:
+
+sysadmin@localhost:~/Documents$ ./hello.sh                                      
+-bash: ./hello.sh: Permission denied
+Como o sistema está atualmente conectado como o usuário sysadmin, e sysadmin é o proprietário deste arquivo, dando ao proprietário do usuário a permissão de execução deve permitir que você execute este script. Usando o comando chmod com o caractere u para representar o conjunto de permissões do proprietário do usuário, o caractere + para indicar uma permissão está sendo adicionado e o caractere x para representar a permissão de execução, o comando deve ser executado da seguinte forma:
+
+sysadmin@localhost:~/Documents$ chmod u+x hello.sh
+Nenhuma saída indica que o comando foi bem-sucedido. Confirme verificando as permissões usando o comando ls -l:
+
+sysadmin@localhost:~/Documents$ ls -l hello.sh                                  
+-rwxr--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+O proprietário do usuário agora tem a permissão de execução listada:
+
+-rwxr--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+Finalmente, tente executar o script novamente. Use a sintaxe de comando mostrada abaixo:
+
+./hello.sh
+sysadmin@localhost:~/Documents$ ./hello.sh                                      
+ ______________                                                                 
+( Hello World! )                                                                
+ --------------                                                                 
+        \                                                                       
+         \                                                                      
+           <(^)                                                                 
+            ( ) 
+Considere o seguinte
+
+Observe que para executar o script no exemplo anterior, um ./ combinação de caracteres foi colocada antes do nome do script.
+
+./hello.sh
+Isso indica que o “comando” deve ser executado a partir do diretório atual.

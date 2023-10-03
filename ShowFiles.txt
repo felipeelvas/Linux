@@ -1,0 +1,126 @@
+Exibindo Arquivos
+Existem alguns comandos Linux disponíveis para visualizar o conteúdo dos arquivos.
+O comando cat, que significa 'concatenate', é frequentemente usado para visualizar rapidamente o conteúdo de pequenos arquivos.
+
+O comando cat exibirá todo o conteúdo do arquivo, por isso é recomendado principalmente para
+arquivos menores onde a saída é limitada e não requer rolagem.
+Para visualizar o conteúdo de um arquivo usando o comando cat,
+basta digitar o comando e usar o nome do arquivo que você deseja visualizar como argumento:
+
+cat [OPÇÕES] [ARQUIVO]
+Nossa VM tem alguns pequenos arquivos de texto que você pode visualizar com o comando cat. Um desses arquivos é o arquivo animals.txt:
+
+Acompanhe
+
+Use o seguinte comando para alternar para o diretório Documents:
+
+sysadmin@localhost:~$ cd ~/Documents
+sysadmin@localhost:~/Documents$ cat animals.txt                            
+1 retriever                                                             
+2 badger                                                                
+3 bat                                                                  
+4 wolf                                                                  
+5 eagle
+O comando cat exibe todas as cinco linhas do arquivo acima.
+Ao visualizar arquivos maiores, o comando cat pode resultar em uma saída muito longa que não pode ser pausada para rolar.
+Um melhor método de visualização de arquivos de texto longos,
+é com um comando de pager que possui uma funcionalidade que pode pausar e rolar pela saída do arquivo.
+
+Nota
+
+Exemplos de comandos de pager incluem comandos more ou less.
+Estes e os comandos adicionais usados para visualizar arquivos no Linux são cobertos pelo NDG Linux Essentials.
+
+Outra maneira de visualizar o conteúdo dos arquivos é usando os comandos head e tail.
+Esses comandos são usados para exibir um número selecionado de linhas na parte superior ou inferior de um arquivo.
+Dar uma olhada em algumas linhas de um arquivo às vezes pode ser útil para garantir que o arquivo seja aquele que você deseja usar.
+
+Outro motivo para visualizar apenas a primeira ou última linha, é porque alguns arquivos, como arquivos de log do sistema,
+são frequentemente atualizados com novas entradas. Semelhante ao comando cat, os comandos head e tail usam
+o nome do arquivo que você deseja visualizar como argumento para o comando:
+
+head [OPÇÕES] [ARQUIVO]
+tail [OPÇÕES] [ARQUIVO]
+Para comparar a saída dos comandos head e tail com a do comando cat, use o comando cat para exibir todo o arquivo alpha.txt:
+
+sysadmin@localhost:~/Documents$ cat alpha.txt       
+A is for Apple                    
+B is for Bear           
+C is for Cat                      
+D is for Dog                               
+E is for Elephant                                      
+F is for Flower       
+G is for Grapes                     
+H is for Happy                                     
+I is for Ink 
+J is for Juice                                   
+K is for Kangaroo
+L is for Lol 
+M is for Monkey                       
+N is for Nickel                             
+O is for Oval                  
+P is for Pickle       
+Q is for Quark                         
+R is for Rat                          
+S is for Sloth                       
+T is for Turnip                        
+U is for Up                                     
+V is for Velvet                       
+W is for Walrus                    
+X is for Xenon                        
+Y is for Yellow         
+Z is for Zebra           
+sysadmin@localhost:~/Documents$
+No exemplo acima, todas as vinte e seis linhas do arquivo são exibidas.
+
+Para filtrar as linhas de saída e visualização da parte superior do arquivo alpha.txt, use o comando head:
+
+sysadmin@localhost:~/Documents$ head alpha.txt                          
+A is for Apple                                                        
+B is for Bear                                                         
+C is for Cat                                                        
+D is for Dog                                                         
+E is for Elephant                                                     
+F is for Flower                                                       
+G is for Grapes                                                        
+H is for Happy                                                        
+I is for Ink                                                          
+J is for Juice
+Em seguida, para exibir linhas na parte inferior do arquivo alpha.txt, use o comando tail:
+
+sysadmin@localhost:~/Documents$ tail alpha.txt                          
+Q is for Quark                                                         
+R is for Rat                                                           
+S is for Sloth                                                        
+T is for Turnip                                                        
+U is for Up                                                            
+V is for Velvet                                                      
+W is for Walrus                                                        
+X is for Xenon                                                        
+Y is for Yellow                                                        
+Z is for Zebra
+Ao examinar a saída dos comandos head e tail acima,
+você pode ver que o comportamento padrão dos comandos head e tail neste shell é exibir dez linhas.
+
+A opção -n com os comandos head e tail pode ser usada para especificar a quantidade de linhas a serem exibidas.
+Para usar a opção -n, especifique a quantidade de linhas do arquivo que deseja exibir após a opção e use o nome do arquivo como argumento:
+
+head -n número_de_linhas nome_do_arquivo
+Por exemplo, para alterar a saída do comando head para exibir as primeiras cinco linhas do arquivo alpha.txt:
+
+sysadmin@localhost:~/Documents$ head -n 5 alpha.txt                    
+A is for Apple                                                         
+B is for Bear                                                          
+C is for Cat                                                           
+D is for Dog                                                           
+E is for Elephant
+
+Exibir as últimas cinco linhas do arquivo alpha.txt:
+
+sysadmin@localhost:~/Documents$ tail -n 5 alpha.txt 
+V is for Velvet                                                        
+W is for Walrus                                                         
+X is for Xenon                                                          
+Y is for Yellow                                                         
+Z is for Zebra            
+sysadmin@localhost:~/Documents$

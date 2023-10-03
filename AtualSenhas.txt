@@ -1,0 +1,54 @@
+Atualizando senhas de usuário
+O comando passwd é usado para atualizar a senha de um usuário.
+ Os usuários só podem alterar suas próprias senhas, enquanto o usuário root pode atualizar a senha para qualquer usuário.
+
+passwd [OPÇÕES] [UTILIZADOR]
+Por exemplo, uma vez que estamos conectados como o usuário sysadmin, podemos alterar a senha dessa conta. Execute o comando passwd.
+ Você será solicitado a inserir a senha existente uma vez e a nova senha duas vezes.
+ Por razões de segurança, nenhuma saída é exibida enquanto a senha está sendo digitada. A saída é mostrada da seguinte forma:
+
+sysadmin@localhost:~$ passwd                                                    
+Changing password for sysadmin.                                                 
+(current) UNIX password: netlab123                                                       
+Enter new UNIX password:                                                       
+Retype new UNIX password:                                                       
+passwd: password updated successfully
+Se o usuário quiser exibir informações de status sobre sua senha, ele pode usar a opção -S:
+
+sysadmin@localhost:~$ passwd -S sysadmin                                        
+sysadmin P 12/20/2017 0 99999 7 -1
+Os campos de saída são explicados abaixo:
+
+Campo	Exemplo	Significado
+User Name	sysadmin	O nome do usuário.
+Password Status	P	
+P indica uma senha utilizável.
+
+L indica uma senha bloqueada.
+
+NP indica que não há senha.
+
+Change Date	03/01/2015	A data em que a senha foi alterada pela última vez.
+Minimum	0	O número mínimo de dias que deve passar antes que a senha atual possa ser alterada pelo usuário.
+Maximum	99999	O número máximo de dias restantes para a senha expirar.
+Warn	7	O número de dias antes da expiração da senha que o usuário é avisado.
+Inactive	-1	O número de dias após a expiração da senha que a conta do usuário permanece ativa.
+Acompanhe
+
+Alterne a conta root usando o seguinte comando. Use netlab123 como senha:
+
+sysadmin@localhost:~$ su root                                                   
+Password:                                                                       
+root@localhost:~#
+O usuário root pode alterar a senha de qualquer usuário. Se o usuário root quiser alterar a senha para sysadmin, ele executaria o seguinte comando:
+
+root@localhost:~# passwd sysadmin                                               
+Enter new UNIX password:                                                        
+Retype new UNIX password:                                                       
+passwd: password updated successfully
+Acompanhe
+
+Saia da conta root usando o comando exit:
+
+root@localhost:~# exit                                                        
+exit

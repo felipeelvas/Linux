@@ -1,0 +1,21 @@
+Expressões Regulares
+As expressões regulares têm duas formas comuns: básica e estendida. A maioria dos comandos que usam expressões regulares pode interpretar expressões regulares básicas. No entanto, expressões regulares estendidas não estão disponíveis para todos os comandos e uma opção de comando é normalmente necessária para que eles funcionem corretamente.
+
+A tabela a seguir resume os caracteres básicos de expressão regular:
+
+Caracteres Regex básicos	Significado
+.	Qualquer caractere único
+[ ]	Qualquer caractere especificado
+[^ ]	Não é o caractere especificado
+*	Zero ou mais caracteres anteriores
+^	Se o primeiro caractere do padrão, o padrão deve estar no início da linha para corresponder, caso contrário, apenas um literal ^
+$	Se o último caractere do padrão, o padrão deve estar no final da linha para corresponder, caso contrário, apenas um literal $
+A tabela a seguir resume as expressões regulares estendidas, que devem ser usadas com o comando egrep ou a opção -E com o comando grep:
+
+Caracteres Regex extendidos	Significado
++	Um ou mais do padrão anterior
+?	O padrão anterior é opcional
+{ }	Especifique correspondências mínimas, máximas ou exatas do padrão anterior
+|	Alternação - um "ou" lógico
+( )	Usado para criar grupos
+Apenas expressões regulares básicas foram abordadas aqui. Para obter mais informações sobre expressões regulares estendidas, consulte os cursos NDG Linux Essentials e NDG Introduction to Linux.

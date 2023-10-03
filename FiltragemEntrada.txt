@@ -1,0 +1,29 @@
+Filtragem de Entrada
+O comando grep é um filtro de texto que irá procurar linhas de entrada e retorno que contenham uma correspondência para um determinado padrão.
+
+grep [OPÇÕES] PADRÃO [ARQUIVO]
+Acompanhe
+
+Use o seguinte comando para alternar para o diretório Documents:
+
+sysadmin@localhost:~$ cd ~/Documents
+Se o exemplo abaixo falhar, repita o exemplo da Seção 11:
+
+sysadmin@localhost:~/Documents$ cp /etc/passwd .
+Por exemplo, o arquivo passwd que copiamos anteriormente para o diretório Documents
+ contém os detalhes de contas especiais do sistema e contas de usuário no sistema.
+ Este arquivo pode ser muito grande, no entanto,
+ o comando grep pode ser usado filtrar informações sobre um usuário específico, como o usuário sysadmin.
+ Use sysadmin como argumento de padrão e passwd como argumento de arquivo:
+
+sysadmin@localhost:~/Documents$ grep sysadmin passwd                               
+sysadmin:x:1001:1001:System Administrator,,,,:/home/sysadmin:/bin/bash 
+O comando acima retornou a linha do passwd que contém o sysadmin padrão.
+
+Nota
+
+Esta linha é a entrada /etc/passwd pertencente ao usuário sysadmin e fornece informações que estão além do escopo deste curso.
+ Para saber mais sobre este arquivo, confira o NDG Linux Essentials.
+
+O exemplo acima usa um termo de pesquisa simples como padrão, no entanto grep é capaz de interpretar padrões de pesquisa muito mais complexos.
+

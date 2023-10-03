@@ -1,0 +1,66 @@
+Redirecionamento
+Adicionar conteúdo a arquivos no Linux pode ser feito de várias maneiras. Linux tem alguns editores de texto que podem ser usados para adicionar conteúdo a um arquivo. No entanto, esse método requer alguma familiaridade com os comandos do editor de texto do Linux.
+
+Nota
+
+Editores de texto Linux são abordados na próxima seção deste curso.
+
+Há uma maneira no Linux de adicionar rapidamente conteúdo a um arquivo usando um recurso de linha de comando chamado de redirecionamento de entrada/saída (I/O). O redirecionamento de E/S permite que as informações na linha de comando sejam enviadas para arquivos, dispositivos e outros comandos. A entrada ou saída de um comando é redirecionada de seu destino padrão para um local diferente. O redirecionamento de E/S é como uma série de trilhos de trem, onde um switch (interruptor) pode ser habilitado para direcionar a saída de um comando em uma faixa diferente para que ele vá para outro lugar no shell. Nesta seção, estamos escrevendo em arquivos redirecionando a saída de um comando para um arquivo.
+
+Quando se trata de entrada de comando e saída existem três caminhos, ou 'trilhas'. Esses caminhos são chamados de descritores de arquivo. O primeiro descritor de arquivo é entrada padrão (standard input), abreviado como STDIN. A entrada padrão é a informação que o comando recebe e processa quando é executado, essencialmente o que um usuário digita no teclado. O segundo descritor de arquivo é a saída padrão (standard output), abreviado como STDOUT. Saída padrão é a informação que o comando exibe, a saída do comando. O último descritor de arquivo é erro padrão (standard error), abreviado como STDERR. STDERR, são as mensagens de erro geradas por comandos que não são executados corretamente. Veja a seguir exemplos de como os descritores de arquivos aparecerão no terminal:
+
+Entrada padrão (STDIN)
+
+sysadmin@localhost:~$ ls ~/Documents
+Saída padrão (STDOUT)
+
+sysadmin@localhost:~$ ls                                                        
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
+Erro padrão (STDERR)
+
+sysadmin@localhost:~$ ls fakefile                                               
+ls: cannot access fakefile: No such file or directory
+Esta seção abordará um dos três descritores de arquivos, STDOUT, e como redirecionar STDOUT de onde você normalmente o vê, no terminal, para um arquivo no sistema de arquivos. Para usar o redirecionamento, basta usar um símbolo maior do que > junto com um nome de arquivo:
+
+[COMANDO] > [ARQUIVO]
+Para demonstrar o redirecionamento, usaremos a saída do comando cat. Sem redirecionamento, a saída do comando cat será exibida no terminal:
+
+Acompanhe
+
+Use o seguinte comando para alternar para o diretório Documents:
+
+sysadmin@localhost:~$ cd ~/Documents
+sysadmin@localhost:~/Documents$ cat food.txt                                    
+Food is good.
+Agora use o caractere > para redirecionar o STDOUT do comando cat food.txt acima para um novo arquivo chamado newfile1.txt:
+
+sysadmin@localhost:~/Documents$ cat food.txt > newfile1.txt
+sysadmin@localhost:~/Documents$
+Como você pode ver, não há saída exibida desde que o STDOUT foi redirecionado para o arquivo newfile1.txt. Verifique se o STDOUT do comando cat food.txt está em newfile1.txt:
+
+sysadmin@localhost:~/Documents$ cat newfile1.txt                     
+Food is good.
+Isso é útil se você precisar copiar conteúdo de um arquivo importante para outro arquivo para editar o conteúdo sem modificar o arquivo original. No entanto, e se você quiser adicionar um comentário ou nota a um arquivo? Para fazer isso, você pode usar o comando echo. O comando echo é usado para imprimir a saída no terminal:
+
+sysadmin@localhost:~/Documents$ echo "Hello"           
+Hello                                                                   
+sysadmin@localhost:~/Documents$
+Imprimir comentários na tela é um recurso divertido, mas o comando echo pode ser mais útil usando o redirecionamento. Usando o comando echo, o conteúdo pode ser adicionado ao arquivo newfile1.txt:
+
+sysadmin@localhost:~/Documents$ cat newfile1.txt         
+Food is good.     
+sysadmin@localhost:~/Documents$ echo "I like food." > newfile1.txt
+sysadmin@localhost:~/Documents$ cat newfile1.txt             
+I like food.                                           
+sysadmin@localhost:~/Documents$
+Observe que o STDOUT do comando echo substituiu o conteúdo original do arquivo. Isso ocorre porque o único caractere > substituirá qualquer conteúdo em um arquivo existente. Para anexar em vez de sobrescrever/substituir conteúdo a um arquivo, use um símbolo duplo maior do que >>:
+
+sysadmin@localhost:~/Documents$ echo "This food is good." >> newfile1.txt
+sysadmin@localhost:~/Documents$ cat newfile1.txt              
+I like food.                                                      
+This food is good.                                 
+sysadmin@localhost:~/Documents$
+Importante
+
+Para redirecionar informações para um arquivo existente, o usuário deve ter permissões de gravação nesse arquivo.
+

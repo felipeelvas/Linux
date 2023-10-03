@@ -1,0 +1,111 @@
+Gerenciamento de pacotes
+O gerenciamento de pacotes é um sistema pelo qual o software pode ser instalado, atualizado, consultado ou removido de um sistema de arquivos. No Linux, existem muitos sistemas diferentes de gerenciamento de pacotes de software diferentes, mas os dois mais populares são os do Debian e da Red Hat. As máquinas virtuais para este curso usam o Ubuntu, um derivado do Debian.
+
+No nível mais baixo do sistema de gerenciamento de pacotes Debian está o comando dpkg. Este comando pode ser complicado para usuários iniciantes do Linux, então a Advanced Package Tool, apt-get, um programa front-end para a ferramenta dpkg, torna o gerenciamento de pacotes ainda mais fácil.
+
+Nota
+
+Um programa front-end é um programa com o qual os usuários podem ver e interagir.
+
+Acompanhe
+
+Muitos dos comandos de gerenciamento de pacotes exigem acesso administrativo, portanto, eles serão prefaciados com o comando sudo. Use netlab123 como senha quando solicitado.
+
+Instalando Pacotes
+Os arquivos de pacote são normalmente instalados baixando-os diretamente de repositórios localizados em servidores de Internet. Os repositórios Debian contêm mais de 65.000 pacotes diferentes de software. Antes de instalar um pacote, é uma boa prática usar a atualização da lista de pacotes disponíveis usando o comando apt-get update.
+
+Os comandos a seguir podem levar alguns minutos para serem executados.
+sudo apt-get update
+sysadmin@localhost:~$ sudo apt-get update                                       
+[sudo] password for sysadmin:                                                   
+Ign file: amd64/ InRelease                                                      
+Ign file: amd64/ Release.gpg                                                    
+Ign file: amd64/ Release                                                        
+Reading package lists... Done
+Para procurar palavras-chave dentro desses pacotes, você pode usar o comando apt-cache search.
+
+apt-cache search [palavra chave]
+A palavra-chave usada deve corresponder a parte do nome ou descrição do pacote que deve ser localizado. Várias palavras-chave podem ser usadas para esclarecer ainda mais a pesquisa; por exemplo, o termo de pesquisa servidor web forneceria melhores resultados do que web ou servidor.
+
+Para encontrar pacotes associados à palavra-chave cow:
+
+sysadmin@localhost:~$ apt-cache search cow                                      
+cowsay - configurable talking cow
+Depois de encontrar o pacote que deseja instalar, você pode instalá-lo com o comando apt-get install:
+
+sudo apt-get install [pacote]
+sysadmin@localhost:~$ sudo apt-get install cowsay                               
+[sudo] password for sysadmin:                                                   
+Reading package lists... Done                                                   
+Building dependency tree                                                        
+Reading state information... Done                                               
+Suggested packages:                                                             
+  filters                                                                       
+The following NEW packages will be installed:                                   
+  cowsay                                                                        
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.                  
+Need to get 0 B/18.5 kB of archives.                                            
+After this operation, 90.1 kB of additional disk space will be used.            
+                                                                                
+Selecting previously unselected package cowsay.                                 
+(Reading database ... 24313 files and directories currently installed.)         
+Preparing to unpack .../cowsay_3.03+dfsg1-6_all.deb ...                         
+Unpacking cowsay (3.03+dfsg1-6) ...                                             
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...                           
+Setting up cowsay (3.03+dfsg1-6) ...
+Considere o seguinte
+
+O comando cowsay é uma vaca falante configurável! Use uma palavra ou frase como argumento:
+
+sysadmin@localhost:~$ cowsay 'NDG Linux Unhatched'                              
+ _____________________                                                          
+< NDG Linux Unhatched >                                                         
+ ---------------------                                                          
+        \   ^__^                                                                
+         \  (oo)\_______                                                        
+            (__)\       )\/\                                                    
+                ||----w |                                                       
+                ||     ||    
+ 
+Recomendamos incluir o argumento entre aspas simples para evitar que o shell interprete caracteres especiais.
+
+Atualizando Pacotes
+O comando apt-get install também pode atualizar um pacote, se esse pacote estiver instalado e uma versão mais recente estiver disponível. Se o pacote ainda não estiver no sistema, ele será instalado; se estiver no sistema, ele será atualizado.
+
+A atualização de todos os pacotes do sistema deve ser feita em duas etapas. Primeiro, atualize o cache de todos os pacotes disponíveis com o apt-get update. Em segundo lugar, execute o comando apt-get upgrade e todos os pacotes e dependências serão atualizados.
+
+apt-get update
+apt-get upgrade
+sysadmin@localhost:~$ sudo apt-get update                                       
+[sudo] password for sysadmin:                                                   
+Ign file: amd64/ InRelease                                                      
+Ign file: amd64/ Release.gpg                                                    
+Ign file: amd64/ Release                                                        
+Reading package lists... Done                                                   
+sysadmin@localhost:~$ sudo apt-get upgrade                                      
+Reading package lists... Done                                                   
+Building dependency tree                                                        
+Reading state information... Done                                               
+Calculating upgrade... Done                                                     
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded. 
+Removendo Pacotes
+O comando apt-get é capaz de remover ou limpar um pacote. A diferença entre os dois é que a limpeza apaga todos os arquivos de pacote, enquanto a remoção exclui todos os arquivos de configuração do pacote, exceto os arquivos de configuração.
+
+Um administrador pode executar o comando apt-get remove para remover um pacote ou o comando apt-get purge para limpar um pacote completamente do sistema.
+
+apt-get remove [pacote]
+apt-get purge [pacote]
+Por exemplo, para limpar cowsay completamente, execute o seguinte comando. Digite Y quando solicitado:
+
+sysadmin@localhost:~$ sudo apt-get purge cowsay                                 
+Reading package lists... Done                                                   
+Building dependency tree                                                        
+Reading state information... Done                                               
+The following packages will be REMOVED:                                         
+  cowsay*                                                                       
+0 upgraded, 0 newly installed, 1 to remove and 0 not upgraded.                  
+After this operation, 90.1 kB disk space will be freed.                         
+Do you want to continue? [Y/n] y                                                
+(Reading database ... 24377 files and directories currently installed.)         
+Removing cowsay (3.03+dfsg1-6) ...                                              
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...

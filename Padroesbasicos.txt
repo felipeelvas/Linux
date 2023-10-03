@@ -1,0 +1,204 @@
+Padrões básicos
+Expressões regulares são padrões que apenas certos comandos são capazes de interpretar.
+Expressões regulares podem ser expandidas para corresponder a determinadas sequências de caracteres no texto.
+Os exemplos exibidos nesta página farão uso de expressões regulares para demonstrar seu poder quando usado com o comando grep.
+Além disso, esses exemplos fornecem uma demonstração muito visual de como as expressões regulares funcionam,
+o texto correspondente será exibido em uma cor vermelha.
+
+Acompanhe
+
+Use o seguinte comando cd para alterar para o diretório Documents.
+
+sysadmin@localhost:~$ cd ~/Documents
+A mais simples de todas as expressões regulares usam apenas caracteres literais, como o exemplo da página anterior:
+
+sysadmin@localhost:~/Documents$ grep sysadmin passwd                               
+sysadmin:x:1001:1001:System Administrator,,,,:/home/sysadmin:/bin/bash
+
+Caracteres Ancora
+Caracteres âncora são uma das formas como expressões regulares podem ser usadas para restringir os resultados da pesquisa.
+Por exemplo, a root padrão aparece muitas vezes no arquivo /etc/passwd:
+
+sysadmin@localhost:~/Documents$ grep 'root' passwd
+root:x:0:0:root:/root:/bin/bash                                                 
+operator:x:1000:37::/root:
+Para evitar que o shell os intérprete erroneamente como caracteres especiais,
+esses padrões devem ser protegidos por aspas fortes, o que significa simplesmente colocá-los entre aspas simples.
+O primeiro caractere âncora ^ é usado para garantir que um padrão apareça no início da linha.
+Por exemplo, para encontrar todas as linhas em /etc/passwd que começam com root use o padrão ^root.
+Observe que ^ deve ser o primeiro caractere no padrão para ser efetivo.
+
+sysadmin@localhost:~/Documents$ grep '^root' /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+Para o próximo exemplo, primeiro examine o arquivo alpha-first.txt. O comando cat pode ser usado para imprimir o conteúdo de um arquivo:
+
+sysadmin@localhost:~/Documents$ cat alpha-first.txt                             
+A is for Animal                                                                 
+B is for Bear                                                                   
+C is for Cat                                                                    
+D is for Dog                                                                    
+E is for Elephant                                                               
+F is for Flower
+O segundo caractere âncora $ pode ser usado para garantir que um padrão apareça no final da linha,
+reduzindo assim efetivamente os resultados da pesquisa. Para encontrar as linhas que terminam com um r no arquivo alpha-first.txt, use o padrão r$:
+
+sysadmin@localhost:~/Documents$ grep 'r$' alpha-first.txt
+B is for Bear
+F is for Flower
+Novamente, a posição deste caractere é importante, o $ deve ser o último caractere no padrão para ser eficaz como uma âncora.
+
+Combine um único caractere com .
+Os exemplos a seguir usarão o arquivo red.txt:
+
+sysadmin@localhost:~/Documents$ cat red.txt
+red
+reef
+rot
+reeed
+rd
+rod
+roof
+reed
+root
+reel
+read
+Uma das expressões mais úteis é o caractere de ponto ..
+Ele irá corresponder a qualquer caractere, exceto para o novo caractere de linha.
+O padrão r..f encontraria qualquer linha que contenhaa letra r seguida por exatamente dois caracteres
+(que pode ser qualquer caractere exceto uma nova linha) e, em seguida, a letra f:
+
+sysadmin@localhost:~/Documents$ grep 'r..f' red.txt
+reef
+roof
+O mesmo conceito pode ser repetido usando outras combinações. O seguinte encontrará quatro palavras de letra que começam com r e com d:
+
+sysadmin@localhost:~/Documents$ grep 'r..d' red.txt
+reed
+read
+Este caractere pode ser usado qualquer número de vezes.
+Para localizar todas as palavras que tenham pelo menos quatro caracteres, o seguinte padrão pode ser usado:
+
+sysadmin@localhost:~/Documents$ grep '....' red.txt                             
+reef
+reeed
+roof                                                                            
+reed
+root
+reel
+read
+A linha não precisa ser uma correspondência exata, ela simplesmente deve conter o padrão, como visto aqui quando r..t é pesquisado no arquivo /etc/passwd:
+
+sysadmin@localhost:~/Documents$ grep 'r..t' /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+operator:x:1000:37::/root:  
+Corresponder um único caractere com []
+Os colchetes [] correspondem a um único caractere da lista ou intervalo de caracteres possíveis contidos entre parênteses.
+
+Por exemplo, dado o arquivo profile.txt:
+
+sysadmin@localhost:~/Documents$ cat profile.txt
+Hello my name is Joe.
+I am 37 years old.
+3121991
+My favorite food is avocados.
+I have 2 dogs.
+123456789101112
+Para encontrar todas as linhas no profile.txt que têm um número neles, use o padrão [0123456789] ou [0-9]:
+
+sysadmin@localhost:~/Documents$ grep '[0-9]' profile.txt
+I am 37 years old.
+3121991
+I have 2 dogs.
+123456789101112
+Por outro lado, para encontrar todas as linhas que contêm caracteres não numéricos, insira um ^ como o primeiro caractere dentro dos colchetes. Este caractere nega os caracteres listados:
+
+sysadmin@localhost:~/Documents$ grep '[^0-9]' profile.txt
+Hello my name is Joe.
+I am 37 years old.
+My favorite food is avocados.
+I have 2 dogs.
+Nota
+
+Não confunda [^0-9] para corresponder às linhas que não contêm números. Na verdade, corresponde a linhas que contêm não-números. Olhe para o arquivo original para ver a diferença. A terceira e a sexta linhas contêm apenas números, elas não contêm os não-números então essas linhas não correspondem.
+
+Quando outros caracteres de expressão regular são colocados dentro de colchetes, eles são tratados como caracteres literais. Por exemplo, o . normalmente corresponde a qualquer caractere, mas colocado dentro dos colchetes, então ele irá apenas corresponder a si mesmo. No próximo exemplo, somente linhas que contêm o . são correspondidos.
+
+sysadmin@localhost:~/Documents$ grep '[.]' profile.txt
+Hello my name is Joe.
+I am 37 years old.
+My favorite food is avocados.
+I have 2 dogs.
+Combine um personagem ou padrões repetidos com *
+O caractere de expressão regular * é usado para corresponder zero ou mais ocorrências de um caractere ou padrão que o precede. Por exemplo e* corresponderia a zero ou mais ocorrências da letra e:
+
+sysadmin@localhost:~/Documents$ cat red.txt
+red
+reef
+rot
+reeed
+rd
+rod
+roof
+reed
+root
+reel
+read
+sysadmin@localhost:~/Documents$ grep 're*d' red.txt
+red
+reeed
+rd
+reed
+Também é possível combinar zero ou mais ocorrências de uma lista de caracteres utilizando os colchetes. O padrão [oe]* usado no exemplo a seguir corresponderá a zero ou mais ocorrências do caractere o ou do caractere e:
+
+sysadmin@localhost:~/Documents$ grep 'r[oe]*d' red.txt
+red
+reeed
+rd
+rod
+reed
+Quando usado com apenas um outro caractere, * não é muito útil. Qualquer um dos padrões a seguir corresponderia a cada string ou linha no arquivo: .* e* b* z*.
+
+sysadmin@localhost:~/Documents$ grep 'z*' red.txt
+red
+reef
+rot
+reeed
+rd
+rod
+roof
+reed
+root
+reel
+read
+sysadmin@localhost:~/Documents$ grep 'e*' red.txt
+red
+reef
+rot
+reeed
+rd
+rod
+roof
+reed
+root
+reel
+read
+Isso ocorre porque * pode corresponder a zero ocorrências de um padrão. Para tornar o* útil, é necessário criar um padrão que inclua mais do que apenas um caractere precedente a*. Por exemplo, os resultados acima podem ser refinados adicionando outro e para fazer com que o padrão ee* corresponda efetivamente a cada linha que contém pelo menos um e.
+
+sysadmin@localhost:~/Documents$ grep 'ee*' red.txt
+red
+reef
+reeed
+reed
+reel
+read
+Entrada padrão
+Se um nome de arquivo não for fornecido, o comando grep será lido a partir de entrada padrão, que normalmente vem do teclado com entrada fornecida pelo usuário que executa o comando. Isso fornece uma experiência interativa com grep onde o usuário digita na entrada e os filtros do grep à medida que vai. Sinta-se livre para experimentá-lo, basta pressionar Ctrl-D quando estiver pronto para retornar ao prompt.
+
+
+Acompanhe
+
+Use o seguinte comando cd para retornar ao diretório home:
+
+sysadmin@localhost:~/Documents$ cd ~
+Linux é Open Source, o que o torna extremamente versátil! Internet das coisas, Big Data, computação em nuvem, segurança cibernética, rede e muito mais.
+"O Linux é open source, o que o torna extremamente versátil!"

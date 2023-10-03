@@ -1,0 +1,65 @@
+Permissões
+As permissões determinam as maneiras pelas quais diferentes usuários podem interagir com um arquivo ou diretório.
+ Ao listar um arquivo com o comando ls -l, a saída inclui informações de permissão.
+Para o exemplo, vamos usar um script chamado hello.sh localizado no diretório Documents:
+
+Acompanhe
+
+Use o seguinte comando para alternar para o diretório Documents:
+
+sysadmin@localhost:~$ cd ~/Documents
+sysadmin@localhost:~/Documents$ ls -l hello.sh                                  
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+Abaixo está uma revisão dos campos relevantes para permissões.
+
+Campo Tipo de Arquivo
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+O primeiro caractere desta saída indica o tipo de um arquivo.
+ Lembre-se de que, se o primeiro caractere for um -, este é um arquivo regular. Se o caractere fosse um d, seria um diretório.
+
+Campo Permissões
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+Após o caractere do tipo de arquivo, as permissões são exibidas. As permissões são divididas em três conjuntos de três caracteres:
+
+Proprietário
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+O primeiro conjunto é para o usuário que possui o arquivo.
+ Se a sua conta atual for o proprietário do arquivo, o primeiro conjunto das três permissões será aplicado e as outras permissões não terão efeito.
+
+O usuário que possui o arquivo e a quem essas permissões se aplicam, pode ser determinado pelo campo proprietário do usuário:
+
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+Grupo
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+O segundo conjunto é para o grupo que possui o arquivo.
+Se a sua conta atual não for o proprietário do arquivo e você for um membro do grupo que possui o arquivo,
+ então as permissões do grupo serão aplicadas e as outras permissões não terão efeito.
+
+O grupo para este arquivo pode ser determinado pelo campo proprietário do grupo:
+
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+Outros
+-rw-r--r-- 1 sysadmin sysadmin 647 Dec 20  2017 hello.sh
+O último conjunto é para todos os outros, qualquer um que os dois primeiros conjuntos de permissões não se aplicam.
+Se você não for o usuário proprietário do arquivo ou um membro do grupo que possui o arquivo, o terceiro conjunto de permissões se aplica a você.
+
+Tipos de permissão
+Existem três permissões diferentes que podem ser colocadas em um arquivo ou diretório: ler, gravar e executar.
+A maneira pela qual essas permissões se aplicam difere para arquivos e diretórios, conforme mostrado no gráfico abaixo:
+
+Permissão	Efeitos no arquivo	Efeitos no diretório
+ler (r)	Permite que o conteúdo do arquivo seja lido ou copiado.	Sem permissão de execução no diretório, permite uma lista não detalhada de arquivos.
+Com permissão de execução, ls -l pode fornecer uma lista detalhada.
+escrever (w)	Permite que o conteúdo seja modificado ou substituído. Permite que arquivos sejam adicionados ou removidos de um diretório.
+Para que essa permissão funcione, o diretório também deve ter permissão de execução.
+executar (x)	Permite que um arquivo seja executado como um processo, embora os arquivos de script exijam permissão de leitura, também.
+Permite que um usuário mude para o diretório se os diretórios pai também tiverem permissão de execução.
+Considere isto
+
+Compreender quais permissões se aplicam é um conjunto de habilidades importante no Linux. Por exemplo, considere o seguinte conjunto de permissões:
+
+-rw-rwx. 1 sysadmin staff 999 abr 10 2013 /home/sysadmin/test
+Nesse cenário, o usuário sysadmin acaba tendo menos acesso a esse arquivo do que os membros do grupo de staff ou todos os outros.
+O usuário sysadmin só tem as permissões de r--.
+Não importa se sysadmin é um membro do grupo de staff;
+ uma vez estabelecida a propriedade do usuário, somente as permissões do proprietário do usuário serão aplicadas.

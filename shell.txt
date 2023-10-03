@@ -1,0 +1,9 @@
+
+	Opções classicas para usar em seu programa
+
+opção curta | longa:
+	-h  | --help: Mostra informações resumidas sobre o uso do progrtama e sai.
+	-V  | --version: Mostra a versão do programa e sai (V maiúsculo).
+	-v  | --verbose: Mostra informações adicionais de saída. informando o usuário sobre o estado atual da execução.
+	-q  | --quiet: não mostra nada na saída, é uma execução quieta.
+	    | -- : Terminador de opções na linha de comando, o que vem depois dele não é considerado opção.

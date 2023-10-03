@@ -1,0 +1,46 @@
+Mover arquivos
+O comando mv é usado para mover um arquivo de um local no sistema de arquivos para outro.
+
+mv FONTE DESTINO
+O comando mv requer pelo menos dois argumentos. O primeiro argumento é a fonte,
+ um caminho para o arquivo a ser movido. O segundo argumento é o destino,
+ um caminho para onde o arquivo será movido. Os arquivos a serem movidos às vezes são chamados de origem, e o local onde os arquivos devem ser colocados é chamado de destino.
+
+Acompanhe
+
+Use o seguinte comando para alternar para o diretório Documents:
+
+sysadmin@localhost:~$ cd ~/Documents
+Para mover o arquivo people.csv para o diretório Work, use o nome do arquivo como origem e o nome do diretório como destino:
+
+sysadmin@localhost:~/Documents$ mv people.csv Work
+Se um arquivo for movido de um diretório para outro sem especificar um novo nome para o arquivo, ele manterá seu nome original. A movimentação acima pode ser confirmada usando o comando ls no diretório Work:
+
+sysadmin@localhost:~/Documents$ ls Work                                         
+people.csv
+O comando mv é capaz de mover vários arquivos, desde que o argumento final fornecido ao comando seja o destino. Por exemplo, para mover três arquivos para o diretório School:
+
+sysadmin@localhost:~/Documents$ mv numbers.txt letters.txt alpha.txt School        
+sysadmin@localhost:~/Documents$ ls School                                       
+Art  Engineering  Math  alpha.txt  letters.txt  numbers.txt  
+Mover um arquivo dentro do mesmo diretório é uma maneira eficaz de renomeá-lo. Por exemplo, no exemplo a seguir, o arquivo animals.txt recebe um novo nome de zoo.txt:
+
+mv animals.txt zoo.txt
+sysadmin@localhost:~/Documents$ ls                                              
+School           alpha-second.txt  hello.sh      newhome.txt  red.txt           
+Work             alpha-third.txt   hidden.txt    os.csv                         
+adjectives.txt   animals.txt       linux.txt     passwd                         
+alpha-first.txt  food.txt          longfile.txt  profile.txt 
+sysadmin@localhost:~/Documents$ mv animals.txt zoo.txt                          
+sysadmin@localhost:~/Documents$ ls                                              
+School           alpha-second.txt  hidden.txt    os.csv       zoo.txt           
+Work             alpha-third.txt   linux.txt     passwd                         
+adjectives.txt   food.txt          longfile.txt  profile.txt                    
+alpha-first.txt  hello.sh          newhome.txt   red.txt   
+Considere isto
+
+As permissões podem ter um impacto nos comandos de gerenciamento de arquivos, como o comando mv. Mover um arquivo requer permissões de gravação e execução tanto nos diretórios de origem quanto nos de destino.
+
+Pinguins no Espaço! Nasa usa Linux. A Estação Espacial Internacional funciona em Linux. Curiosidade o Mars Rover. Migramos as funções principais do Windows para o Linux porque precisávamos de um sistema operacional estável e confiável.
+https://ndg-content-dev.s3.amazonaws.com/media/images/unhatched/messaging_4.png
+"Pinguins no Espaço! Nasa usa Linux. A Estação Espacial Internacional funciona em Linux. Curiosidade o Mars Rover. Migramos as funções principais do Windows para o Linux porque precisávamos de um sistema operacional estável e confiável."

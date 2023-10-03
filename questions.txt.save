@@ -1,0 +1,158 @@
+CORRECT - See Section 2
+O que CLI significa?
+
+   Command Line Interface
+
+CORRECT - See Section 2
+Os comandos diferenciam maiúsculas de minúsculas..
+
+   Verdade
+
+CORRECT - See Section 2
+Ao digitar um comando, argumentos ou opções geralmente vêm primeiro?
+
+   Opções
+
+CORRECT - See Section 3
+Qual comando irá imprimir sua localização atual no sistema de arquivos?
+
+   pwd
+
+CORRECT - See Section 4
+Qual comando permitirá que você altere seu diretório atual?
+
+   cd
+
+CORRECT - See Section 4
+Qual das alternativas a seguir não é um exemplo de caminho absoluto?
+
+   Documents
+
+CORRECT - See Section 4
+Qual das alternativas a seguir não é um exemplo de caminho relativo?
+
+   /home
+
+CORRECT - See Section 4
+O ~ (til) é usado para representar:
+
+   Diretório inicial de um usuário
+
+CORRECT - See Section 4
+O caracter ponto . é usado para representar:
+
+   O diretório atual
+
+CORRECT - See Section 5
+O ﻿ls comando sem opções ou argumentos...
+
+   ... lista o conteúdo do diretório atual.
+
+CORRECT - See Section 5
+O primeiro caractere em uma longa lista ﻿ls -l indica:
+
+   Tipo de arquivo
+
+WRONG - See Section 5
+Qual opção para o ls irá classificar a saída pelo tamanho do arquivo?
+
+   Resposta correta -S (Ordenará os arquivos por tamanho de arquivo)
+
+CORRECT - See Section 7
+Qual das seguintes combinações tem as permissões de proprietário destacadas?
+
+   rw-rw-r--
+
+CORRECT - See Section 7
+Qual das seguintes combinações tem as outras permissões destacadas?
+
+   rw-rw-r--
+
+CORRECT - See Section 8
+Qual comando irá permitir que o usuário mude a permissão de um arquivo?
+
+   chmod
+
+CORRECT - See Section 7
+Qual dos seguintes conjuntos de permissões indica que outras pessoas têm apenas a permissão de leitura?
+
+   rw-rw-r--
+
+CORRECT - See Section 9
+Qual dos seguintes comandos é usado para alterar a propriedade de um arquivo?
+
+   chown
+
+CORRECT - See Section 12
+O mv ﻿comando requer pelo menos dois argumentos.
+
+   Verdade
+
+CORRECT - See Section 14
+Qual dos seguintes comandos é usado para filtrar o texto?
+
+   grep
+
+CORRECT - See Section 14.2
+Qual dos seguintes comandos retornará apenas as linhas que começam com test?
+
+   grep '^test' file.txt
+
+CORRECT - See Section 14.2
+Qual das seguintes linhas não seria retornada pelo comando grep '[^0-9]' file.txt command?
+
+   3121991
+
+WRONG - See Section 14.2
+Qual das seguintes linhas seria retornada pelo comando grep 'b[oe]t' file.txt command?
+
+   boet O padrão [oe]* usado no exemplo a seguir corresponderá a zero ou mais ocorrências do caractere o ou do caractere e:
+
+sysadmin@localhost:~/Documents$ grep 'r[oe]*d' red.txt
+red
+reeed
+rd
+rod
+reed
+
+CORRECT - See Section 15
+Qual dos seguintes comandos não desligará o sistema imediatamente?
+
+   shutdown
+
+CORRECT - See Section 17
+Qual dos seguintes comandos irá exibir todos os processos?
+
+   ps -e
+
+CORRECT - See Section 17
+O comando ps﻿ requer acesso administrativo.
+
+   Falso
+
+WRONG - See Section 18
+Qual dos seguintes comandos deve ser executado antes de instalar um pacote?
+
+   apt-get search
+
+CORRECT - See Section 19
+O usuário root pode alterar a senha de qualquer usuário.
+
+   Verdade
+
+CORRECT - See Section 20
+Qual dos seguintes comandos pode ser usado para imprimir a saída no terminal?
+
+   echo
+
+CORRECT - See Section 20
+O caractere > é usado para qual dos seguintes descritores de arquivo?
+
+   STDOUT
+
+CORRECT - See Section 10
+Qual dos seguintes comandos exibirá as últimas cinco linhas de um arquivo chamado file1.txt?
+
+(choose two)
+   tail -5 file1.txt
+   tail -n 5 file1.txt

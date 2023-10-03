@@ -1,0 +1,103 @@
+Acesso administrativo
+Existem muitos comandos Linux que lidam com informações confidenciais, como senhas, hardware do sistema,
+ ou de outra forma operam sob outras circunstâncias excepcionais.
+ Impedir que usuários regulares executem esses comandos ajuda a proteger o sistema.
+ Fazer login como usuário root fornece acesso administrativo, permitindo a execução de alguns dos comandos privilegiados.
+
+O Comando su
+su OPÇÕES NOME_DO_USUÁRIO
+O comando su permite que você atue temporariamente como um usuário diferente.
+ Ele faz isso criando um novo shell. O shell é simplesmente um console de entrada de texto que permite digitar comandos.
+ Por padrão, se uma conta de usuário não for especificada, o comando su abrirá um novo shell como usuário root,
+ que fornece privilégios administrativos.
+
+Acompanhar
+
+A utilização da opção shell de login é recomendada, pois o shell de login configura totalmente o novo shell com as configurações do novo usuário.
+Esta opção pode ser especificada de uma das três maneiras:
+
+su -
+su -l
+su --login
+Depois de executar o comando su, uma senha é necessária.
+ Em nossas máquinas virtuais, a senha para as contas root e sysadmin é netlab123.
+ Se você esquecer, ele é exibido sempre que uma nova máquina virtual seja iniciada.
+ Como medida de segurança, a senha não estará visível à medida que for digitada.
+
+sysadmin@localhost:~$ su  -
+Password:
+root@localhost:~#
+Observe que o prompt de comando foi alterado para refletir que você agora está conectado como usuário root.
+ Para sair e retornar à conta sysadmin, use o comando exit. Note que o prompt muda novamente:
+
+root@localhost:~# exit
+logout
+sysadmin@localhost:~$
+Para evitar a execução de comandos sensíveis, configuramos o comando Locomotiva Steam, o comando sl, para exigir acesso administrativo.
+ Se o comando for executado como sysadmin, ele falhará:
+
+sysadmin@localhost:~$ sl
+-bash: /usr/bin/sl: Permission denied
+Use o comando su para alternar para a conta root e executar o comando sl com acesso administrativo:
+
+sysadmin@localhost:~$ su  -
+Password:
+root@localhost:~# sl
+ 
+                            (@@) (  ) (@)  ( )  @@    ()    @     O     @
+                         (   )
+                     (@@@@)
+                  (    )
+
+                (@@@)
+            ====        ________                ___________
+        _D _|  |_______/        \__I_I_____===__|_________|
+         |(_)---  |   H\________/ |   |        =|___ ___|      _________________
+         /     |  |   H  |  |     |   |         ||_| |_||     _|
+        |      |  |   H  |__--------------------| [___] |   =|
+        | ________|___H__/__|_____/[][]~\_______|       |   -|
+        |/ |   |-----------I_____I [][] []  D   |=======|____|__________________
+      __/ =| o |=-~~\  /~~\  /~~\  /~~\ ____Y___________|__|____________________
+       |/-=|___|=    ||    ||    ||    |_____/~\___/          |_D__D__D_|  |_D__
+        \_/      \_O=====O=====O=====O/      \_/               \_/   \_/    \_/
+Use o comando exit novamente para retornar à conta sysadmin.
+
+root@localhost:~# exit
+logout
+sysadmin@localhost:~$
+O Comando sudo
+sudo [OPTIONS] COMANDO
+O comando sudo permite que um usuário execute um comando como outro usuário sem criar um novo shell.
+ Em vez disso, para executar um comando com privilégios administrativos,
+ use-o como um argumento para o comando sudo. Como o comando su, o comando sudo assume por padrão que a conta de usuário root deve ser usada para executar comandos.
+
+Considere o seguinte
+
+O comando sudo também pode ser usado para alternar para outras contas de usuário. Para especificar uma conta de usuário diferente, use a opção -u.
+
+Execute o comando sl como usuário root colocando sudo na frente dele:
+
+Nota
+
+Lembre-se que a senha é netlab123. O prompt para a senha não aparecerá novamente enquanto o usuário continuar executando comandos sudo com menos de cinco minutos de intervalo.
+
+sysadmin@localhost:~$ sudo sl
+[sudo] password for sysadmin:
+ 
+                            (@@) (  ) (@)  ( )  @@    ()    @     O     @
+                         (   )
+                     (@@@@)
+                  (    )
+
+                (@@@)
+            ====        ________                ___________
+        _D _|  |_______/        \__I_I_____===__|_________|
+         |(_)---  |   H\________/ |   |        =|___ ___|      _________________
+         /     |  |   H  |  |     |   |         ||_| |_||     _|
+        |      |  |   H  |__--------------------| [___] |   =|
+        | ________|___H__/__|_____/[][]~\_______|       |   -|
+        |/ |   |-----------I_____I [][] []  D   |=======|____|__________________
+      __/ =| o |=-~~\  /~~\  /~~\  /~~\ ____Y___________|__|____________________
+       |/-=|___|=    ||    ||    ||    |_____/~\___/          |_D__D__D_|  |_D__
+        \_/      \_O=====O=====O=====O/      \_/               \_/   \_/    \_/
+Uma vez concluído o comando, observe que o prompt não foi alterado, você ainda está conectado como sysadmin. O comando sudo fornece apenas acesso administrativo para a execução do comando especificado. Esta é uma vantagem, pois reduz o risco de um usuário executar acidentalmente um comando como root. A intenção de executar um comando é clara; o comando é executado como root se prefixado com o comando sudo. Caso contrário, o comando é executado como um usuário regular.

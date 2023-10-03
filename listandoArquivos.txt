@@ -1,0 +1,175 @@
+Listando arquivos
+O comando ls é usado para listar o conteúdo de um diretório. Você já o viu sendo usado algumas vezes antes em exemplos, mas esta página ajudará a garantir que você esteja confortável com seu uso.
+
+ls [OPÇÕES] [ARQUIVO]
+Por padrão, quando o comando ls é usado sem opções ou argumentos, ele irá listar os arquivos no diretório atual:
+
+sysadmin@localhost:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
+Para saber os detalhes sobre um arquivo, tais como, o tipo de arquivo, as permissões, propriedade ou o carimbo de data/hora, execute uma listagem longa usando a opção -l para o comando ls. Abaixo, uma listagem do diretório /var/log é usada como um exemplo, uma vez que fornece uma variedade de saídas:
+
+sysadmin@localhost:~$ ls -l /var/log/
+total 844                                                                       
+-rw-r--r-- 1 root   root  18047 Dec 20  2017 alternatives.log                   
+drwxr-x--- 2 root   adm    4096 Dec 20  2017 apache2                            
+drwxr-xr-x 1 root   root   4096 Dec 20  2017 apt                                
+-rw-r----- 1 syslog adm    1346 Oct  2 22:17 auth.log                           
+-rw-r--r-- 1 root   root  47816 Dec  7  2017 bootstrap.log                      
+-rw-rw---- 1 root   utmp      0 Dec  7  2017 btmp                               
+-rw-r----- 1 syslog adm     547 Oct  2 22:17 cron.log                           
+-rw-r----- 1 root   adm   85083 Dec 20  2017 dmesg                              
+-rw-r--r-- 1 root   root 325238 Dec 20  2017 dpkg.log                           
+-rw-r--r-- 1 root   root  32064 Dec 20  2017 faillog                            
+drwxr-xr-x 2 root   root   4096 Dec  7  2017 fsck                               
+-rw-r----- 1 syslog adm     106 Oct  2 19:57 kern.log                           
+-rw-rw-r-- 1 root   utmp 292584 Oct  2 19:57 lastlog                            
+-rw-r----- 1 syslog adm   19573 Oct  2 22:57 syslog                             
+drwxr-xr-x 2 root   root   4096 Apr 11  2014 upstart                            
+-rw-rw-r-- 1 root   utmp    384 Oct  2 19:57 wtmp 
+Cada linha corresponde a um arquivo contido no diretório. As informações podem ser divididas em campos separados por espaços.
+ Os campos são os seguintes:
+
+Tipo de arquivo
+
+-rw-r--r-- 1 root   root  18047 Dec 20  2017 alternatives.log       
+            
+drwxr-x--- 2 root   adm    4096 Dec 20  2017 apache2  
+Na verdade, o primeiro campo contém dez caracteres,
+ onde o primeiro caractere indica o tipo de arquivo e os próximos nove especificam permissões.
+ Os tipos de arquivo são:
+
+Símbolo	Tipo de Arquivo	Descrição
+d	diretorio	Um arquivo usado para armazenar outros arquivos.
+-	arquivo regular	Inclui arquivos legíveis, arquivos de imagens, arquivos binários e arquivos compactados.
+l	link simbólico	Aponta para outro arquivo.
+s	tomada	Permite a comunicação entre processos.
+p	tubo	Permite a comunicação entre processos.
+b	bloquear arquivo	Usado para se comunicar com o hardware.
+c	arquivo de caracteres	Usado para se comunicar com o hardware.
+
+O primeiro arquivo alternatives.log é um arquivo regular -, enquanto o segundo arquivo apache2 é um diretório d.
+
+Permissões
+
+drwxr-xr-x 2 root   root   4096 Apr 11  2014 upstart
+As permissões indicam como determinados usuários podem acessar um arquivo. Continue lendo para saber mais sobre permissões.
+
+Contagem de links físicos
+
+-rw-r----- 1 syslog adm    1346 Oct  2 22:17 auth.log
+Esse número indica quantos links rígidos apontam para esse arquivo.
+ Links rígidos estão além do objetivo deste módulo, mas são abordados no curso NDG Linux Essentials.
+
+Proprietário do usuário
+
+-rw-r----- 1 syslog adm     106 Oct  2 19:57 kern.log
+O usuário syslog possui este arquivo. Toda vez que um arquivo é criado, a propriedade é automaticamente atribuída ao usuário que o criou.
+
+Proprietário do Grupo
+
+-rw-rw-r-- 1 root   utmp 292584 Oct  2 19:57 lastlog
+Indica qual grupo possui este arquivo.
+
+Tamanho do arquivo
+-rw-r----- 1 syslog adm   19573 Oct  2 22:57 syslog
+Diretórios e arquivos maiores podem ser mostrados em kilobytes, uma vez que exibir seu tamanho em bytes apresentaria um número muito grande.
+Portanto, no caso de um diretório, ele pode realmente ser um múltiplo do tamanho do bloco usado para o sistema de arquivos.
+O tamanho do bloco é o tamanho de uma série de dados armazenados no sistema de arquivos.
+
+Registro de data/hora
+drwxr-xr-x 2 root   root   4096 Dec  7  2017 fsck
+Isso indica a hora em que o conteúdo do arquivo foi modificado pela última vez.
+
+Nome do arquivo
+
+-rw-r--r-- 1 root   root  47816 Dec  7  2017 bootstrap.log
+O campo final contém o nome do arquivo ou diretório.
+
+Considere isto
+
+No caso de links simbólicos, um arquivo que aponta para outro arquivo,
+ o nome do link será exibido junto com uma seta e o nome do caminho do arquivo original.
+
+lrwxrwxrwx. 1 root root 22 Nov 6 2012 /etc/grub.conf -> ../boot/grub/grub.conf
+Links simbólicos estão além do escopo deste módulo, mas são abordados no curso NDG Linux Essentials.
+
+Organizando
+Por padrão, a saída do comando ls é organizada alfabeticamente pelo nome do arquivo. Ele pode classificar por outros métodos também.
+
+Acompanhe
+
+As opções nos exemplos abaixo serão combinadas com a opção -l para que os detalhes relevantes dos arquivos sejam exibidos. Campos de aviso correspondentes à opção de pesquisa.
+
+A opção -t irá classificar os arquivos por registro de data/hora:
+
+sysadmin@localhost:~$ ls -lt /var/log                                           
+total 844                                                                       
+-rw-r----- 1 syslog adm   19573 Oct  2 22:57 syslog                             
+-rw-r----- 1 syslog adm    1346 Oct  2 22:17 auth.log                           
+-rw-r----- 1 syslog adm     547 Oct  2 22:17 cron.log                           
+-rw-rw-r-- 1 root   utmp 292584 Oct  2 19:57 lastlog                            
+-rw-rw-r-- 1 root   utmp    384 Oct  2 19:57 wtmp                               
+-rw-r----- 1 syslog adm     106 Oct  2 19:57 kern.log                           
+-rw-r--r-- 1 root   root  18047 Dec 20  2017 alternatives.log                   
+-rw-r--r-- 1 root   root  32064 Dec 20  2017 faillog                            
+-rw-r----- 1 root   adm   85083 Dec 20  2017 dmesg                              
+-rw-r--r-- 1 root   root 325238 Dec 20  2017 dpkg.log                           
+drwxr-x--- 2 root   adm    4096 Dec 20  2017 apache2                            
+drwxr-xr-x 1 root   root   4096 Dec 20  2017 apt                                
+-rw-r--r-- 1 root   root  47816 Dec  7  2017 bootstrap.log                      
+drwxr-xr-x 2 root   root   4096 Dec  7  2017 fsck                               
+-rw-rw---- 1 root   utmp      0 Dec  7  2017 btmp                               
+drwxr-xr-x 2 root   root   4096 Apr 11  2014 upstart              
+A opção -S ordenará os arquivos por tamanho de arquivo:
+
+sysadmin@localhost:~$ ls -l -S /var/log                                         
+total 844                                                                       
+-rw-r--r-- 1 root   root 325238 Dec 20  2017 dpkg.log                           
+-rw-rw-r-- 1 root   utmp 292584 Oct  2 19:57 lastlog                            
+-rw-r----- 1 root   adm   85083 Dec 20  2017 dmesg                              
+-rw-r--r-- 1 root   root  47816 Dec  7  2017 bootstrap.log                      
+-rw-r--r-- 1 root   root  32064 Dec 20  2017 faillog                            
+-rw-r----- 1 syslog adm   19573 Oct  2 22:57 syslog                             
+-rw-r--r-- 1 root   root  18047 Dec 20  2017 alternatives.log                   
+drwxr-x--- 2 root   adm    4096 Dec 20  2017 apache2                            
+drwxr-xr-x 1 root   root   4096 Dec 20  2017 apt                                
+drwxr-xr-x 2 root   root   4096 Dec  7  2017 fsck                               
+drwxr-xr-x 2 root   root   4096 Apr 11  2014 upstart                            
+-rw-r----- 1 syslog adm    1346 Oct  2 22:17 auth.log                           
+-rw-r----- 1 syslog adm     547 Oct  2 22:17 cron.log                           
+-rw-rw-r-- 1 root   utmp    384 Oct  2 19:57 wtmp                               
+-rw-r----- 1 syslog adm     106 Oct  2 19:57 kern.log                           
+-rw-rw---- 1 root   utmp      0 Dec  7  2017 btmp
+
+A opção -r reverterá a ordem de qualquer tipo de classificação. Observe a diferença quando ela é adicionada ao exemplo anterior:
+
+sysadmin@localhost:~$ ls -lSr /var/log
+total 844                                                                       
+-rw-rw---- 1 root   utmp      0 Dec  7  2017 btmp                               
+-rw-r----- 1 syslog adm     106 Oct  2 19:57 kern.log                           
+-rw-rw-r-- 1 root   utmp    384 Oct  2 19:57 wtmp                               
+-rw-r----- 1 syslog adm     654 Oct  2 23:17 cron.log                           
+-rw-r----- 1 syslog adm    1669 Oct  2 23:17 auth.log                           
+drwxr-xr-x 2 root   root   4096 Apr 11  2014 upstart                            
+drwxr-xr-x 2 root   root   4096 Dec  7  2017 fsck                               
+drwxr-xr-x 1 root   root   4096 Dec 20  2017 apt                                
+drwxr-x--- 2 root   adm    4096 Dec 20  2017 apache2                            
+-rw-r--r-- 1 root   root  18047 Dec 20  2017 alternatives.log                   
+-rw-r----- 1 syslog adm   19680 Oct  2 23:17 syslog                             
+-rw-r--r-- 1 root   root  32064 Dec 20  2017 faillog                            
+-rw-r--r-- 1 root   root  47816 Dec  7  2017 bootstrap.log                      
+-rw-r----- 1 root   adm   85083 Dec 20  2017 dmesg                              
+-rw-rw-r-- 1 root   utmp 292584 Oct  2 19:57 lastlog                            
+-rw-r--r-- 1 root   root 325238 Dec 20  2017 dpkg.log        
+
+Os números no campo de tamanho do arquivo mudam de decrescente para ascendente.
+
+Usado sozinho a opção -r com lista os arquivos em ordem alfabética inversa:
+
+sysadmin@localhost:~$ ls -r /var/log                                            
+wtmp     lastlog   faillog   cron.log       auth.log  alternatives.log
+upstart  kern.log  dpkg.log  btmp           apt
+syslog   fsck      dmesg     bootstrap.log  apache2
+
+Você sabia que pode encontrar Linux em: Facebook, Amazon, Google, McDonald's, NASA, BMW, Tesla, Wikipedia, United States Postal Service, Tesla.
+"Você sabia? Você pode encontrar o Linux em ..."

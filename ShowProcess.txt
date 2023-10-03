@@ -1,0 +1,44 @@
+Exibindo Processos
+A execução de um comando resulta em algo chamado processo. No sistema operacional Linux, os processos são executados com os privilégios do usuário que executa o comando. Isso permite que os processos sejam limitados a determinados recursos com base na identidade do usuário.
+
+Embora existam exceções, geralmente o sistema operacional diferenciará os usuários com base no fato de serem eles, ou não, o administrador. Normalmente, os usuários regulares, como o usuário sysadmin, não podem controlar os processos de outro usuário. Os usuários que têm privilégios administrativos, como a conta root, podem controlar qualquer processo do usuário, inclusive a interrupção de qualquer processo de usuário.
+
+O comando ps pode ser usado para listar processos.
+
+ps [OPÇÕES]
+sysadmin@localhost:~$ ps
+  PID TTY          TIME CMD
+   80 pts/0        00:00:00 bash
+   94 pts/0        00:00:00 ps
+O comando ps exibirá os processos que estão sendo executados no terminal atual por padrão. No exemplo acima, a linha inferior é o processo criado pela execução do comando ps. A saída inclui as seguintes colunas de informações:
+
+PID: O identificador do processo, que é exclusivo para o processo. Esta informação é útil para controlar o processo pelo seu número de identificação.
+TTY: O nome do terminal em que o processo está sendo executado. Esta informação é útil para distinguir entre diferentes processos que têm o mesmo nome.
+TIME: A quantidade total de tempo do processador usado pelo processo. Normalmente, essas informações não são usadas por usuários comuns.
+CMD: O comando que iniciou o processo.
+Em vez de visualizar apenas os processos em execução no terminal atual, os usuários podem querer visualizar todos os processos em execução no sistema. A opção -e exibirá todos os processos:
+
+sysadmin@localhost:~$ ps -e
+  PID TTY          TIME CMD                                                     
+    1 pts/0        00:00:00 init                                                    
+   33 ?            00:00:00 rsyslogd                                                
+   37 ?            00:00:00 cron                                                    
+   39 ?            00:00:00 sshd                                                    
+   56 ?            00:00:00 named                                                   
+   69 pts/0        00:00:00 login                                                   
+   79 pts/0        00:00:00 bash                                                    
+   94 pts/0        00:00:00 ps 
+Normalmente, a opção -f também é usada, pois fornece mais detalhes na saída do comando, incluindo opções e argumentos. Procure o comando ps na última linha, a coluna CMD agora inclui as opções usadas:
+
+sysadmin@localhost:~$ ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD                             
+root         1     0  0 19:16 pts/0        00:00:00 /sbin??? /init                  
+syslog      33     1  0 19:16 ?            00:00:00 /usr/sbin/rsyslogd              
+root        37     1  0 19:16 ?            00:00:00 /usr/sbin/cron                  
+root        39     1  0 19:16 ?            00:00:00 /usr/sbin/sshd                  
+bind        56     1  0 19:16 ?            00:00:00 /usr/sbin/named -u bind         
+root        69     1  0 19:16 pts/0        00:00:00 /bin/login -f                   
+sysadmin    79    69  0 19:16 pts/0        00:00:00 -bash                           
+sysadmin    95    79  0 19:43 pts/0        00:00:00 ps -ef  
+Imagem de mulher em entrevista de emprego. A contratação de talentos de código aberto é uma alta prioridade para 97 por cento dos gerentes de contratação pesquisados em 2021.
+"A contratação de talentos de código aberto é uma alta prioridade para 97% dos gerentes de contratação pesquisados em 2021."
